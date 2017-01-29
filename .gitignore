@@ -2,7 +2,7 @@
 .env
 
 # Data (and big files in general) go here. Don't upload them to GitHub.
-data/
+data/*
 !data/README.md
 
 # Mac OS generates some files we don't need in our repo
