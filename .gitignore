@@ -1,0 +1,17 @@
+# Any login credentials go in this file. Don't upload them to GitHub.
+.env
+
+# Data (and big files in general) go here. Don't upload them to GitHub.
+data/
+!data/README.md
+
+# Mac OS generates some files we don't need in our repo
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Don't clutter GitHub with notebook checkpoints or Python caches
+.ipynb_checkpoints/
+__pycache__
