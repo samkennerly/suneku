@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Tell Docker to build and run a suneku lab.
+# INPUTS
+#   optional name of container (default 'my_suneku_lab')
+
+
+CONTAINER_NAME=${1:-my_suneku_lab}
+SUNEKU_FOLDER="$HOME/suneku/"
+
+# Build Docker image (if it's already built, this will update it)
+docker build --tag suneku_lab:latest "$SUNEKU_FOLDER/labs/latest"
+
+# Run a new container in "detached" mode.
+# Mount host machine's ~/suneku/ folder as /suneku/ in the container.
+# Expose ports the Jupyter notebook server will use.
+# Make /suneku/ the working directory.
+docker run \
+    --detach \
+    --name $CONTAINER_NAME \
+    --volume $SUNEKU_FOLDER:/suneku/ \
+    --publish 8888:8888 \
+    --workdir="/suneku" \
+    suneku_lab:latest
