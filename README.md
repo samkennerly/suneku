@@ -28,7 +28,7 @@ To add a package, modify the suneku [Dockerfile](https://github.com/samkennerly/
 ### Mac or Linux
 1. Install [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [Docker for Linux](https://docs.docker.com/engine/installation/linux/).
 2. Use [git clone](https://help.github.com/articles/cloning-a-repository/) to clone this repository into your home folder.  This will create a `~/suneku/` folder.
-3. Use the script [~/suneku/labs/run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) to build a lab and start a Jupyter server.
+3. Run the script [~/suneku/labs/run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) to build a lab and start a Jupyter server.
 4. Open your favorite web browser and go to `0.0.0.0:8888`. You should see a Jupyter notebook.
 5. Click on `/practice/` and open the `practice.ipynb` notebook to start doing data science.
 
