@@ -1,22 +1,22 @@
 # UNDER CONSTRUCTION #
 this repo is not ready for public use yet!
 
-# suneku data science toolkit
+# suneku data science tools for [Python 3](https://www.python.org/) 
 
 Suneku is a complete environment for inspecting, visualizing, and analyzing data.  
-It is similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/), but smaller and simpler.  
+It is similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/), but simpler.   
 I use a modified version of suneku for small- and medium-sized data projects at [Conductor](https://www.conductor.com/).
 
 ## ingredients
 
 Each suneku lab is a [Docker container](https://www.docker.com/what-docker) which starts a [Jupyter](http://jupyter.org/) server.  
-Jupyter notebooks can be used to run [Python 3](https://www.python.org/) interactively and produce human-readable reports.  
+Jupyter notebooks can be used to run Python interactively and produce human-readable reports.  
 Click on the [practice notebook](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb) for an example.
 
-Each lab comes pre-installed with Python packages for data science, including
-* [pandas](http://pandas.pydata.org/) for manipulating tables and doing math
+Each lab comes pre-installed with popular Python packages including:
+* [pandas](http://pandas.pydata.org/) for loading, cleaning, and transforming tables
 * [seaborn](http://seaborn.pydata.org/) for quickly generating plots and figures
-* [scikit-learn](http://scikit-learn.org/stable/) machine-learning packages
+* [scikit-learn](http://scikit-learn.org/stable/) for training and testing machine-learning algorithms
 * the complete [Anaconda 3](https://docs.continuum.io/anaconda/pkg-docs) package list
 * a custom [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package
 
