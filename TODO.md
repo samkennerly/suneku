@@ -1,6 +1,7 @@
 # top
-* practice notebook with small CSV
-* finish README.md and data/README.md
+* finish README.md
+* finish data/README.md
+* finish labs/README.md
 
 # modules
 * sunekutools.viz
