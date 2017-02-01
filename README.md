@@ -71,5 +71,4 @@ See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekuto
 
 ## maintaining and customizing your lab(s)
 
-Once you've built and tested one suneku lab, building another is quick and easy. To add or remove packages, simply modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a short introduction to Docker and a list of common commands.
-
+If you've built and tested a suneku lab, building another is quick and easy. To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains an introduction to Docker and some common commands.
