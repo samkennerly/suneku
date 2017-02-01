@@ -4,8 +4,11 @@ this repo is not ready for public use yet!
 # suneku data science tools for [Python 3](https://www.python.org/) 
 
 Suneku is a complete environment for inspecting, visualizing, and analyzing data.  
-It is similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/), but simpler.   
-I use a modified version of suneku for small- and medium-sized data projects at [Conductor](https://www.conductor.com/).
+It is similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/) for data science contests.   
+
+Suneku is designed for manipulating datasets which are not large enough to require a [Spark cluster](http://spark.apache.org/).  
+It is a simplified open-source version of the tech stack I use for small-data projects at [Conductor](https://www.conductor.com/).  
+
 
 ## ingredients
 
@@ -35,10 +38,6 @@ To add a package, modify the suneku [Dockerfile](https://github.com/samkennerly/
 ### Windows
 You can use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/), but you'll need to know enough about Docker to write your own setup script instead of using [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab).
 
-### maintaining your lab(s)
-
-If you're new to Docker, see the [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder for a quick summary and list of common Docker commands.
-
 
 ## Jupyter notebooks
 
@@ -56,15 +55,23 @@ Whenever I create a notebook (let's call it `my_project.ipynb`), I usually creat
 Note that GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
 
 
-## store data in /suneku/data
+## store your science in your ~/suneku/ folder
 
-Docker containers are mostly designed to act like sealed boxes which do not interact with the rest of your computer. Suneku labs make two exceptions: they broadcast to `0.0.0.0:8888` so you can use Jupyter, and they link their own `/suneku/` folder to the `~/suneku/` folder on your computer. Any time you modify the `/suneku/` folder from within a suneku lab, your computer's `~/suneku/` folder will also be modified. (Your suneku lab can't even see the other folders on your computer, so they're safe.)
+For the most part, Docker containers do not interact with the rest of your computer. Suneku labs make two exceptions: they connect to `0.0.0.0:8888` on the host machine so you can use Jupyter, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
 
-Always store data in `~/suneku/data/`. (From inside your lab, this folder will appear as `/suneku/data/` without the `~`.) The suneku repo contains a `.gitignore` file which instructs Git not to track files in `/suneku/data/`. This prevents you from accidentally uploading large files to GitHub, which can cause serious problems.
+**If you modify the `/suneku/` folder inside a suneku lab, your computer's `~/suneku/` folder will also be modified.** The `/suneku/` folder is not really "inside" a Docker container; it is your `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
+
+**Always store data in `~/suneku/data/`.** From inside your lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid accidentally uploading large files to GitHub.
 
 Remember: GitHub will not backup your `~/suneku/data/` folder, so you'll need to find another way to backup data! I use an [Amazon S3 bucket](https://aws.amazon.com/s3/). Suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed in case you want to do the same.
 
 
-## import `sunekutools`
+## import sunekutools
 
-## customize your suneku lab
+See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) folder for details.
+
+
+### maintaining your lab(s)
+
+Once you've built and tested one suneku lab, rebuilding another is quick and easy. To add or remove packages, simply modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile), delete your lab, and build a new one. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a short introduction to Docker and a list of common commands.
+
