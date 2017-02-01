@@ -23,8 +23,6 @@ Each lab comes pre-installed with popular Python packages including:
 * the complete [Anaconda 3](https://docs.continuum.io/anaconda/pkg-docs) package list
 * a custom [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package
 
-To add a package, modify the suneku [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and rebuild your lab. (See [below](https://github.com/samkennerly/suneku/blob/master/README.md#customize-your-suneku-lab) for details.)
-
 
 ## build your own suneku lab
 
@@ -50,7 +48,7 @@ Jupyter notebooks are useful for the early stages of a project when you don't kn
 
 For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
 
-Whenever I create a notebook (let's call it `my_project.ipynb`), I usually create a `my_project.py` file in the same folder as my notebook. Then I open the notebook in Jupyter and `my_project.py` in a text editor. To avoid cluttering my notebook, I keep function definitions, global variables, and `import` statements in `my_project.py` file. I then import all that stuff into my notebook with `from my_project import *`.
+Whenever I create a notebook (let's call it `my_project.ipynb`), I usually create a `my_project.py` file in the same folder as my notebook. Then I open the notebook in Jupyter and `my_project.py` in a text editor. I keep function definitions, global variables, and `import` statements in `my_project.py` file. I then import all that stuff into my notebook with `from my_project import *`.
 
 Note that GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
 
@@ -71,7 +69,7 @@ Remember: GitHub will not backup your `~/suneku/data/` folder, so you'll need to
 See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) folder for details.
 
 
-### maintaining your lab(s)
+## maintaining and customizing your lab(s)
 
-Once you've built and tested one suneku lab, rebuilding another is quick and easy. To add or remove packages, simply modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile), delete your lab, and build a new one. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a short introduction to Docker and a list of common commands.
+Once you've built and tested one suneku lab, building another is quick and easy. To add or remove packages, simply modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a short introduction to Docker and a list of common commands.
 
