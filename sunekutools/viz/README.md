@@ -1,8 +1,16 @@
 ##viz
 
-The [viz.ipynb](https://github.com/Conductor/science/blob/master/conductor_data_tools/viz/viz.ipynb) demo notebook is a quick-reference guide for the convenience functions in [viz.py](https://github.com/Conductor/science/blob/master/conductor_data_tools/viz/viz.py).
+Click on the [viz.ipynb](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.ipynb) demo notebook for a quick-reference guide to [viz.py](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.py).
 
-Three practice datasets are included as CSV files:
-- [Fisher's iris data](https://github.com/Conductor/science/blob/master/conductor_data_tools/viz/Iris.csv)
-- [NY energy production](https://github.com/Conductor/science/blob/master/conductor_data_tools/viz/Energy.csv)
-- [NY average annual daily traffic](https://github.com/Conductor/science/blob/master/conductor_data_tools/viz/Traffic.csv)
+4 practice datasets are included as CSV files:
+- [NY energy production](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/Energy.csv)
+from [data.ny.gov](https://data.ny.gov/Energy-Environment/Electric-Generation-By-Fuel-Type-GWh-Beginning-196/h4gs-8qnu)
+
+- [NY average annual daily traffic](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/Traffic.csv)
+from [data.ny.gov](https://data.ny.gov/Transportation/Annual-Average-Daily-Traffic-AADT-Beginning-1977/6amx-2pbv)
+
+- [Global surface temperature anomalies](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/ZonalTempAnomaly.csv)
+from [data.giss.nasa.gov](https://data.giss.nasa.gov/gistemp/)
+
+- [Fisher's iris data](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/Iris.csv)
+from [scikit-learn.org](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html)
