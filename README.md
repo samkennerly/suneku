@@ -3,24 +3,27 @@ this repo is not ready for public use yet!
 
 # start doing data science with suneku
 
-Suneku is a complete environment for inspecting, visualizing, and analyzing data using [Python 3](https://www.python.org/).  
+Suneku is a complete environment for analyzing data using [Python 3](https://www.python.org/).  
 It has much in common with the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
-It is designed to provide a standardized, professional data science toolkit quickly and easily.
+It is designed to be easily built, customized, and rebuilt when you break it.
 
-Suneku is designed for manipulating datasets which can comfortably fit in your computer's RAM.  
-It is a simplified, open-source version of the setup I use for small-data projects at [Conductor](https://www.conductor.com/).  
+Suneku works best for datasets which can comfortably fit in your computer's RAM.  
 For larger datasets, I suggest using [Databricks](https://databricks.com/) or building your own [Spark cluster](http://spark.apache.org/).
+
+Here are some things you can do with a suneku lab:
+* [load, inspect, and clean a table](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb)
+* [make complicated plots quickly](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.ipynb)
+* [train a machine to classify flowers](https://github.com/samkennerly/suneku/blob/master/sunekutools/ml/logistic_classifier.ipynb)
+
 
 
 ## ingredients
 
 Each suneku lab is a [Docker container](https://www.docker.com/what-docker) which starts a [Jupyter](http://jupyter.org/) server.  
 Jupyter notebooks can be used to run Python interactively and produce human-readable reports.  
-See [`practice/practice.ipynb`](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb) for an example.
-
 Each lab comes pre-installed with popular Python packages including:
 * [pandas](http://pandas.pydata.org/) for loading, cleaning, and transforming tables
-* [seaborn](http://seaborn.pydata.org/) for quickly generating plots and figures
+* [seaborn](http://seaborn.pydata.org/) for generating plots and figures
 * [scikit-learn](http://scikit-learn.org/stable/) for training and testing machine-learning algorithms
 * the complete [Anaconda 3](https://docs.continuum.io/anaconda/pkg-docs) package list
 * the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package of convenience functions and classes
@@ -75,4 +78,4 @@ See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekuto
 
 ## maintaining and customizing your lab(s)
 
-If you've built and tested one suneku lab, building another is quick and easy. To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains an introduction to Docker and some common commands.
+If you've built one suneku lab, building another is quick and easy. To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains an introduction to Docker and some common commands.
