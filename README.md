@@ -1,6 +1,3 @@
-# UNDER CONSTRUCTION #
-this repo is not ready for public use yet!
-
 # start doing data science with suneku
 
 Suneku is a complete environment for inspecting, visualizing, and analyzing data using [Python 3](https://www.python.org/).  
