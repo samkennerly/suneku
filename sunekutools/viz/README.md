@@ -1,6 +1,6 @@
-##viz
+# sunekutools.viz
 
-Click on the [viz.ipynb](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.ipynb) demo notebook for a quick-reference guide to [sunekutools.viz](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.py) functions.
+Click on the [viz.ipynb](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.ipynb) demo notebook for a quick-reference guide to the functions in [viz.py](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.py).
 
 4 practice datasets are included as CSV files:
 - [NY energy production](https://github.com/samkennerly/suneku/blob/master/data/Energy.csv)
