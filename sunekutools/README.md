@@ -1,5 +1,3 @@
-# UNDER CONSTRUCTION
-
 # sunekutools
 
 This custom Python package consists of utility functions in [tools.py](https://github.com/samkennerly/suneku/blob/master/sunekutools/tools.py) and these sub-packages:
@@ -44,9 +42,3 @@ import sunekutools as st
 import numpy as np
 ```
 This example would make `np` and `st.np` two different names for `numpy`.
-
-**Caution:** Be careful using *star imports*:
-```python
-from st import *      # not recommended
-```
-Star imports rely on the `__all__` lists within each module's `__init__.py` file. Because `sunekutools` is often under construction, maintaining accurate `__all__` lists is difficult.
