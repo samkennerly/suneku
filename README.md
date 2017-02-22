@@ -1,13 +1,10 @@
-# UNDER CONSTRUCTION
-this repo is not ready for public use yet!
-
 # start doing data science with suneku
 
 Suneku is a complete environment for analyzing data using [Python 3](https://www.python.org/).  
 It has much in common with the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
-It is designed to be easily built, customized, and rebuilt when you break it.
+It is designed to be easily built, customized, and rebuilt.
 
-Suneku works best for datasets which can comfortably fit in your computer's RAM.  
+Suneku works best for data which fits comfortably in your computer's RAM.  
 For larger datasets, I suggest using [Databricks](https://databricks.com/) or building your own [Spark cluster](http://spark.apache.org/).
 
 Here are some things you can do with a suneku lab:
@@ -26,7 +23,7 @@ Each lab comes pre-installed with popular Python packages including:
 * [seaborn](http://seaborn.pydata.org/) for generating plots and figures
 * [scikit-learn](http://scikit-learn.org/stable/) for training and testing machine-learning algorithms
 * the complete [Anaconda 3](https://docs.continuum.io/anaconda/pkg-docs) package list
-* the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package of convenience functions and classes
+* the custom [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package
 
 
 ## build your own suneku lab
@@ -39,19 +36,19 @@ Each lab comes pre-installed with popular Python packages including:
 5. Click on `/practice/` and open the `practice.ipynb` notebook to start doing data science.
 
 ### Windows
-You can use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/), but you'll need to know enough about Docker to write your own setup script instead of using [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab).
+You can use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/), but you'll need to know enough about Docker to write your own setup script. See [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) for inspiration.
 
 
 ## Jupyter notebooks
 
-Jupyter notebooks are useful for the early stages of a study when you don't know what you're doing yet. I use them to inspect data for quality and formatting issues, quickly try untested ideas, and export summaries of projects. My basic Jupyter workflow typcally works like this:
+Jupyter notebooks are useful for "exploratory data analysis," which is a PR-friendly name for the stages of a project in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable summaries of studies. My typical workflow looks like this:
 
-* Open a notebook
-* Import packages (or your own custom modules) with Python `import` statements
-* Type some Python code in a cell
-* Hit Shift-Enter to run that cell and inspect the output
-* If the result isn't what you wanted, then edit your code and try again
-* When you're reasonably sure that you did something useful, save and go to the next cell
+* Open a notebook.
+* Import packages with Python `import` statements.
+* Type some Python code in a cell.
+* Hit Shift-Enter to run that cell and inspect the output.
+* Oops, that's not actually what I meant to do. Edit my code and try again.
+* Whenever I do something useful, I save the notebook and go to the next cell.
 
 For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
 
@@ -66,7 +63,7 @@ For the most part, Docker containers do not interact with the rest of your compu
 
 **If you modify the `/suneku/` folder inside a suneku lab, your computer's `~/suneku/` folder will also be modified.** The `/suneku/` folder is not really "inside" a Docker container. It is your `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
 
-**Always store data in `~/suneku/data/`.** From inside your lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid accidentally uploading large files to GitHub.
+**Store data in `~/suneku/data/`.** From inside your lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid clogging your git repository with large files.
 
 Remember: GitHub will not upload files from your `~/suneku/data/` folder, so you'll need to find another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
 
@@ -78,4 +75,4 @@ See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekuto
 
 ## maintaining and customizing your lab(s)
 
-If you've built one suneku lab, building another is quick and easy. To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains an introduction to Docker and some common commands.
+To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a very brief intro to Docker and some common commands.
