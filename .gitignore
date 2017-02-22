@@ -1,6 +1,3 @@
-# Any login credentials go in this file. Don't upload them to GitHub.
-.env
-
 # Data (and big files in general) go here. Don't upload them to GitHub.
 data/*
 !data/README.md
