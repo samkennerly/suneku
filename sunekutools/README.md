@@ -42,3 +42,23 @@ import sunekutools as st
 import numpy as np
 ```
 This example would make `np` and `st.np` two different names for `numpy`.
+
+
+## the `PandaBox()` class
+
+sunekutools includes the `PandaBox()` class for storing a collection of Series and DataFrame objects.
+
+I routinely need to load several tables from various sources: SQL databases, S3 buckets, third-party APIs, etc. The raw tables often require some (possibly complicated) cleaning, joining, and other transformations. By storing tables in a `PandaBox`, I can save pre-processed data to a single [HDF5 file](https://support.hdfgroup.org/HDF5/whatishdf5.html) like so:
+```
+import sunekutools as st
+Data = st.PandaBox()
+Data.Energy    = st.pd.read_csv('/suneku/data/Energy.csv',index_col='Year').fillna(0)
+Data.ZonalTemp = st.pd.read_csv('/suneku/data/ZonalTempAnomaly.csv',index_col='Year')
+Data.Merged    = st.pd.merge(Data.Energy,Data.ZonalTemp,how='left',left_index=True,right_index=True)
+Data.save('/suneku/data/Box.h5')
+```
+Instead of re-loading and re-processing several tables, I can just use
+```
+Data = st.PandaBox.load('/suneku/data/Box.h5')
+```
+to recover my data with (mostly!) correct indexing, formatting, and datatypes.
