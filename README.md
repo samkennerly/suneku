@@ -57,25 +57,25 @@ Whenever I create a notebook (let's call it `my_project.ipynb`), I usually creat
 GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
 
 
-## about your `~/suneku/` folder
+## about your ~/suneku/ folder
 
 For the most part, Docker containers do not interact with the rest of your computer. Suneku labs make two exceptions: they connect to `0.0.0.0:8888` on the host machine so you can use Jupyter, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
 
 **If you modify the `/suneku/` folder inside a suneku lab, your `~/suneku/` folder will be modified.** The `/suneku/` folder is not really "inside" a container; it is the host machine's `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
 
 
-### store data in `~/suneku/data`
+### store data in ~/suneku/data
 
-From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid clogging your git repository with large files.
+From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku `.gitignore` file tells Git not to track files in `/suneku/data/`. Keeping data here helps avoid clogging git with large files.
 
 Remember: GitHub will not track files in this folder, so you need another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
 
 
-### store prototypes and untested code in `~/suneku/studies/`
+### store prototypes and untested code in ~/suneku/studies/
 
-When I write code which is well-tested and intended to be re-used often, I usually save it to a subfolder of `~/suneku/sunekutools/`. To avoid cluttering my `~/suneku/` folder, other code usually goes in a subfolder of `~/suneku/studies/`. (Remember, you don't need the `~` from inside a lab.)
+When I write code which is well-tested and intended to be re-used often, I usually save it to a subfolder of `~/suneku/sunekutools/`. To avoid clutter, other code usually goes in a subfolder of `~/suneku/studies/`. (Remember, you don't need the `~` from inside a lab.)
 
-I also like to keep a nearly empty "scratch notebook" [scratch.ipynb](https://github.com/samkennerly/suneku/blob/master/studies/scratch.ipynb) in my `~/suneku/studies/` folder for quick access when I need to try something quickly. (This is more of a guideline than a rule.)
+I also like to keep a nearly empty [scratch notebook](https://github.com/samkennerly/suneku/blob/master/studies/scratch.ipynb) in my `~/suneku/studies/` folder for easy access when I need to try something quickly.
 
 
 ## import sunekutools
