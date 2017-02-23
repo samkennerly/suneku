@@ -41,7 +41,7 @@ You can use suneku on a Windows machine with [Docker for Windows](https://docs.d
 
 ## Jupyter notebooks
 
-Jupyter notebooks are useful for "exploratory data analysis," which is a PR-friendly name for the stages of a project in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable summaries of studies. My typical workflow looks like this:
+Jupyter notebooks are useful for "exploratory data analysis," which is a polite name for projects in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable summaries of studies. My typical workflow looks like this:
 
 * Open a notebook.
 * Import packages with Python `import` statements.
@@ -57,15 +57,25 @@ Whenever I create a notebook (let's call it `my_project.ipynb`), I usually creat
 GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
 
 
-## store your science in your ~/suneku/ folder
+## about your `~/suneku/` folder
 
 For the most part, Docker containers do not interact with the rest of your computer. Suneku labs make two exceptions: they connect to `0.0.0.0:8888` on the host machine so you can use Jupyter, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
 
-**If you modify the `/suneku/` folder inside a suneku lab, your computer's `~/suneku/` folder will also be modified.** The `/suneku/` folder is not really "inside" a Docker container. It is your `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
+**If you modify the `/suneku/` folder inside a suneku lab, your `~/suneku/` folder will be modified.** The `/suneku/` folder is not really "inside" a container; it is the host machine's `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
 
-**Store data in `~/suneku/data/`.** From inside your lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid clogging your git repository with large files.
 
-Remember: GitHub will not upload files from your `~/suneku/data/` folder, so you'll need to find another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
+### store data in `~/suneku/data`
+
+From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku repo contains a `.gitignore` file which tells Git not to track files in `/suneku/data/`. Keeping data in `~/suneku/data/` helps avoid clogging your git repository with large files.
+
+Remember: GitHub will not track files in this folder, so you need another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
+
+
+### store prototypes and untested code in `~/suneku/studies/`
+
+When I write code which is well-tested and intended to be re-used often, I usually save it to a subfolder of `~/suneku/sunekutools/`. To avoid cluttering my `~/suneku/` folder, other code usually goes in a subfolder of `~/suneku/studies/`. (Remember, you don't need the `~` from inside a lab.)
+
+I also like to keep a nearly empty "scratch notebook" [scratch.ipynb](https://github.com/samkennerly/suneku/blob/master/studies/scratch.ipynb) in my `~/suneku/studies/` folder for quick access when I need to try something quickly. (This is more of a guideline than a rule.)
 
 
 ## import sunekutools
