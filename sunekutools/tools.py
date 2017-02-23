@@ -87,7 +87,7 @@ def overlap(a,b):
     print( "%s distinct elements in B, but not in A" % len(b_not_a) )
 
 def readjson(filename):
-    ''' Load a dict stored with SKTools.savejson() '''
+    ''' Load a dict stored with savejson() '''
     with open(filename,'r') as f:
         d = json.load(f)
     return d
@@ -178,6 +178,7 @@ def ymd(day):
 
 def afew(x,nSamples=10):
     ''' Grab a few random elements from a list, Series, or DataFrame '''
+
     nElements   = len(x)
     nSamples    = min(nSamples,nElements)
     Indices     = random.sample(range(nElements),nSamples)
@@ -185,6 +186,7 @@ def afew(x,nSamples=10):
     if isinstance(x,pd.Series):         xSmall = x.iloc[Indices]
     elif isinstance(x,pd.DataFrame):    xSmall = x.iloc[Indices]
     else:                               xSmall = [ x[i] for i in Indices ]
+
     return xSmall
 
 def badrows(df,cols=None):
@@ -192,14 +194,17 @@ def badrows(df,cols=None):
     Return only the rows of a DataFrame with at least one NaN.
     Use 'cols' to restrict NaN detection to specific rows.
     '''
+
     if cols is None:
         cols = df.columns
     fBadRow = df[cols].isnull().any(axis=1)
     BadRows = df.loc[fBadRow,:]
+
     return BadRows
 
 def blank2nan(s):
     ''' Convert an object of length 0 to Numpy NaN '''
+
     if len(s)==0:
         return np.nan
     else:
@@ -215,12 +220,14 @@ def categorize(s,left=None,right=None,nCats=5):
         right   right endpoint [included]
         nCats   number of categories to use
     '''
+
     if left is None:
         left = s.dropna().min()
     if right is None:
         right = s.dropna().max()
     bin_edges   = np.linspace(left,right,nCats+1)
     cats        = pd.cut(s,bins=bin_edges)
+
     return cats
 
 def cleanpct(df):
@@ -229,6 +236,7 @@ def cleanpct(df):
 
 def datefail(x):
     ''' Return True iff pd.to_datetime() fails to parse x '''
+
     try:
         pd.to_datetime(x)
         return False
@@ -237,6 +245,7 @@ def datefail(x):
 
 def datesafe(x):
     ''' Convert to datetime if possible; else mark NaT '''
+
     try:
         return pd.to_datetime(x)
     except:
@@ -244,6 +253,7 @@ def datesafe(x):
 
 def dfinfo(x,nRows=5):
     ''' Print info about a DataFrame or Series '''
+
     print( 'Object type:     ', type(x) )
     print( 'Index type:      ', type(x.index) )
     print( 'Shape:           ', x.shape )
@@ -258,7 +268,9 @@ def dfnumeric(df,cols):
     Convert column(s) of a DataFrame to numeric type.
     NOTE: [cols] must be a list
     '''
+
     df[cols] = df[cols].apply(pd.to_numeric)
+
     return df
 
 def dfretype(df,cols,new_type):
@@ -266,7 +278,9 @@ def dfretype(df,cols,new_type):
     Convert column(s) of a DataFrame to another type.
     NOTE: [cols] must be a list
     '''
+
     df[cols] = df[cols].astype(new_type)
+
     return df
 
 def dfretype_multi(df,coltypes):
@@ -305,10 +319,12 @@ def dropsort(df,sort_cols):
 
 def dftime(df,cols):
     '''
-    Convert column(s) of a DataFrame to datetime64 objects.
+    Convert column(s) of a DataFrame to datetimelike objects.
     NOTE: [cols] must be a list.
     '''
+
     df[cols] = df[cols].apply(pd.to_datetime)
+
     return df
 
 def groupstats(df,col,groupby,dropna=True,fast=False):
@@ -354,7 +370,8 @@ def homogenize(s,default_value=np.nan):
         last_valid_value = valid_values.iat[-1]
     else:
         last_valid_value = default_value
-    new_s = pd.Series(last_valid_value,index=s.index)        
+    new_s = pd.Series(last_valid_value,index=s.index)
+
     return new_s
 
 def keepcols(df,col_names):
@@ -389,7 +406,7 @@ def mad(s):
     return deviation.abs().median()
 
 def moretime(x,periods,freq='D'):
-    ''' Extend a Series or DataFrame with Timestamp indices into the future '''
+    ''' Extend a TimeSeries or DataFrame of TimeSeries into the future '''
 
     last_time = x.index.max()
     new_times = pd.date_range(last_time,periods=periods+1,freq=freq)
@@ -425,7 +442,7 @@ def pairinterp(x0,x1,y0,y1,step):
     return y.interpolate(method='index')
 
 def pct(s):
-    ''' Find mean of a (typically Boolean) series and show as a percent '''
+    ''' Find mean of a Series and show as a percent '''
     return round( 100 * s.mean() )
     
 def periodavg(s,freq='M'):
