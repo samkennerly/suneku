@@ -5,6 +5,8 @@ This custom Python package consists of utility functions in [tools.py](https://g
 * **[ml](https://github.com/samkennerly/suneku/tree/master/sunekutools/ml)** for machine learning and related tools
 * **[viz](https://github.com/samkennerly/suneku/tree/master/sunekutools/viz)** for visualizing data
 
+Many of the functions in [tools.py](https://github.com/samkennerly/suneku/blob/master/sunekutools/tools.py) aren't really necessary, but I often use them as a quick-reference guide when I forget how to do something like "use `os.makedirs()` to make a new folder"
+
 ## demo notebooks
 
 For each `.py` module in `sunekutools`, there is an `.ipynb` notebook demonstrating how to use that module.
