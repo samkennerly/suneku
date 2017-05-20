@@ -53,7 +53,7 @@ Jupyter notebooks are useful for "exploratory data analysis," which is a polite 
 
 For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
 
-When I create a notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I navigate to the notebook in a web browser and open `my_project.py` in a text editor. I put `import` statements, function definitions, and most of my other code in `my_project.py`. Then I import all that stuff into my notebook with `from my_project import *` in the first cell. This reduces clutter in my notebooks so there's more space for text, plots, and results.
+When I create a new notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I view the notebook in a web browser and open `my_project.py` in a text editor side-by-side on one big screen. I keep most of my code in `my_project.py` and run `from my_project import *` in the first cell of my notebook. This reduces clutter in my notebooks so there's more space for text, plots, and results.
 
 GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing software or running scripts.
 
