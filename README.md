@@ -53,14 +53,14 @@ Jupyter notebooks are useful for "exploratory data analysis," which is a polite 
 
 For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
 
-When I create a notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I open the notebook in Jupyter and `my_project.py` in a text editor. I keep most function definitions, global variables, custom classes, and `import` statements in `my_project.py` file. I then import all that stuff into my notebook with `from my_project import *` in the first cell. This reduces clutter in my notebooks and makes it slightly harder to accidentally delete important code.
+When I create a notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I navigate to the notebook in a web browser and open `my_project.py` in a text editor. I put `import` statements, function definitions, and most of my other code in `my_project.py`. Then I import all that stuff into my notebook with `from my_project import *` in the first cell. This reduces clutter in my notebooks so there's more space for text, plots, and results.
 
-GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
+GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing software or running scripts.
 
 
 ## about your ~/suneku/ folder
 
-For the most part, Docker containers do not interact with the rest of your computer. Suneku labs make two exceptions: they connect to `0.0.0.0:8888` on the host machine so you can use Jupyter, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
+For the most part, suneku labs avoid interacting with other files and programs on their host computer. Two big exceptions are: they connect to `0.0.0.0:8888` so the web browser can find the Jupyter server, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
 
 **If you modify the `/suneku/` folder inside a suneku lab, your `~/suneku/` folder will be modified.** The `/suneku/` folder is not really "inside" a container; it is the host machine's `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
 
