@@ -7,6 +7,7 @@
 
 CONTAINER_NAME=${1:-my_suneku_lab}
 SUNEKU_FOLDER="$HOME/suneku/"
+ENV_FILE="$SUNEKU_FOLDER.env"
 
 # Build Docker image (if it's already built, this will update it)
 docker build --tag suneku_lab:latest "$SUNEKU_FOLDER/labs/latest"
