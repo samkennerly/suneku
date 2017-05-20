@@ -19,6 +19,7 @@ docker run \
     --detach \
     --name $CONTAINER_NAME \
     --volume $SUNEKU_FOLDER:/suneku/ \
+    --env-file $ENV_FILE \
     --publish 8888:8888 \
     --workdir="/suneku" \
     suneku_lab:latest
