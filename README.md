@@ -4,7 +4,8 @@ Suneku is a complete environment for analyzing data using [Python 3](https://www
 Suneku "labs" are similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
 These labs are designed to be easily built, customized, rebuilt, and shared.
 
-Suneku works best for data which fits comfortably in your computer's RAM. For larger datasets, I use [Databricks](https://databricks.com/) to prepare a [Spark cluster](http://spark.apache.org/) for me.
+Suneku works best for data which fits comfortably in your computer's RAM.  
+For larger datasets, I use [Databricks](https://databricks.com/) to run a [Spark cluster](http://spark.apache.org/).
 
 Here are some things you can do with a suneku lab:
 * [load, inspect, and clean a table](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb)
@@ -15,9 +16,7 @@ Here are some things you can do with a suneku lab:
 
 ## ingredients
 
-Each suneku lab is a [Docker container](https://www.docker.com/what-docker) which starts a [Jupyter](http://jupyter.org/) server.  
-Jupyter notebooks can be used to run Python interactively and produce human-readable reports.  
-Each lab comes pre-installed with popular Python packages including:
+A suneku lab is a [Docker container](https://www.docker.com/what-docker) which starts a [Jupyter](http://jupyter.org/) server. (If you've never used Jupyter, see below for a quick introduction.) Each lab comes pre-installed with many Python packages including:
 * [pandas](http://pandas.pydata.org/) for loading, cleaning, and transforming tables
 * [seaborn](http://seaborn.pydata.org/) for generating plots and figures
 * [scikit-learn](http://scikit-learn.org/stable/) for training and testing machine-learning algorithms
@@ -38,7 +37,7 @@ Each lab comes pre-installed with popular Python packages including:
 
 ### Windows
 
-It's possible to use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/). You can build and share labs just like any Mac or Linux user. The catch is: you'll need to write your own setup script to replace [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) because I haven't written a Windows version yet.
+[Docker for Windows](https://docs.docker.com/docker-for-windows/) can build and run labs which can be shared with any Mac or Linux user. The only catch is: you may need to write your own setup script if my [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script does not work on your machine.
 
 
 ## Jupyter notebooks
