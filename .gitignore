@@ -17,3 +17,6 @@ Thumbs.db
 # Don't clutter GitHub with notebook checkpoints or Python caches
 .ipynb_checkpoints/
 __pycache__
+
+# Other stuff which should not be public
+private/
