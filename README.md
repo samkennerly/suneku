@@ -1,11 +1,10 @@
 # start doing data science with suneku
 
 Suneku is a complete environment for analyzing data using [Python 3](https://www.python.org/).  
-It has much in common with the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
-It is designed to be easily built, customized, and rebuilt.
+Suneku "labs" are similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
+These labs are designed to be easily built, customized, rebuilt, and shared.
 
-Suneku works best for data which fits comfortably in your computer's RAM.  
-For larger datasets, I suggest using [Databricks](https://databricks.com/) or building your own [Spark cluster](http://spark.apache.org/).
+Suneku works best for data which fits comfortably in your computer's RAM. For larger datasets, I use [Databricks](https://databricks.com/) to prepare a [Spark cluster](http://spark.apache.org/) for me.
 
 Here are some things you can do with a suneku lab:
 * [load, inspect, and clean a table](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb)
@@ -31,12 +30,15 @@ Each lab comes pre-installed with popular Python packages including:
 ### Mac or Linux
 1. Install [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [Docker for Linux](https://docs.docker.com/engine/installation/linux/).
 2. Use [git clone](https://help.github.com/articles/cloning-a-repository/) to clone this repository into your home folder.  This will create a `~/suneku/` folder.
-3. Run the script [~/suneku/labs/run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) to build a lab and start a Jupyter server.
-4. Open your favorite web browser and go to `0.0.0.0:8888`. You should see a Jupyter notebook.
-5. Click on `/practice/` and open the `practice.ipynb` notebook to start doing data science.
+3. Create a blank text file called `.env` in your `~/suneku/` folder.
+4. Run the script [~/suneku/labs/run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab). This will build a lab and start a Jupyter server.
+5. Open your favorite web browser and go to `0.0.0.0:8888`. You should see a Jupyter notebook.
+6. Click on `/practice/` and open the `practice.ipynb` notebook to start doing data science.
+
 
 ### Windows
-You can use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/), but you'll need to know enough about Docker to write your own setup script. See [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) for inspiration.
+
+It's possible to use suneku on a Windows machine with [Docker for Windows](https://docs.docker.com/docker-for-windows/). You can build and share labs just like any Mac or Linux user. The catch is: you'll need to write your own setup script to replace [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) because I haven't written a Windows version yet.
 
 
 ## Jupyter notebooks
@@ -62,6 +64,13 @@ GitHub can automatically render Jupyter notebooks! If you upload a notebook to G
 For the most part, Docker containers do not interact with the rest of your computer. Suneku labs make two exceptions: they connect to `0.0.0.0:8888` on the host machine so you can use Jupyter, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
 
 **If you modify the `/suneku/` folder inside a suneku lab, your `~/suneku/` folder will be modified.** The `/suneku/` folder is not really "inside" a container; it is the host machine's `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
+
+
+### store environment variables in ~/suneku/.env
+
+Any [environment variables](https://en.wikipedia.org/wiki/Environment_variable) declared in this file will be automatically loaded into each lab you build. It's OK to leave your `.env` file blank, but the file must exist or else the [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script will fail.
+
+I use my `.env` file to store login credentials. Suneku's [gitignore](https://git-scm.com/docs/gitignore) includes `.env`, so GitHub will _not_ see, track, or upload the contents of your `.env` file.
 
 
 ### store data in ~/suneku/data
