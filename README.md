@@ -37,12 +37,12 @@ A suneku lab is a [Docker container](https://www.docker.com/what-docker) which s
 
 ### Windows
 
-[Docker for Windows](https://docs.docker.com/docker-for-windows/) can build and run labs which can be shared with any Mac or Linux user. The only catch is: you may need to write your own setup script if my [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script does not work on your machine.
+[Docker for Windows](https://docs.docker.com/docker-for-windows/) can build and run labs which can be shared with any Mac or Linux user. The only catch is: you may need to write your own setup script if [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) does not work.
 
 
 ## Jupyter notebooks
 
-Jupyter notebooks are useful for "exploratory data analysis," which is a polite name for projects in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable summaries of studies. My typical workflow looks like this:
+Jupyter notebooks are useful for "exploratory data analysis," which is a polite name for projects in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable reports. My typical workflow looks like this:
 
 * Open a notebook.
 * Import packages with Python `import` statements.
@@ -53,7 +53,7 @@ Jupyter notebooks are useful for "exploratory data analysis," which is a polite 
 
 For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
 
-Whenever I create a notebook (let's call it `my_project.ipynb`), I usually create a `my_project.py` file in the same folder as my notebook. I open the notebook in Jupyter and `my_project.py` in a text editor. I keep most function definitions, global variables, custom classes, and `import` statements in `my_project.py` file. I then import all that stuff into my notebook with `from my_project import *` in the first cell.
+When I create a notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I open the notebook in Jupyter and `my_project.py` in a text editor. I keep most function definitions, global variables, custom classes, and `import` statements in `my_project.py` file. I then import all that stuff into my notebook with `from my_project import *` in the first cell. This reduces clutter in my notebooks and makes it slightly harder to accidentally delete important code.
 
 GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing any software or running any scripts. 
 
@@ -67,14 +67,14 @@ For the most part, Docker containers do not interact with the rest of your compu
 
 ### store environment variables in ~/suneku/.env
 
-Any [environment variables](https://en.wikipedia.org/wiki/Environment_variable) declared in this file will be automatically loaded into each lab you build. It's OK to leave your `.env` file blank, but the file must exist or else the [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script will fail.
+Any [environment variables](https://en.wikipedia.org/wiki/Environment_variable) declared in this file will be automatically loaded when you execute [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab). It's OK to leave your `.env` file blank, but the file must exist.
 
-I use my `.env` file to store login credentials. Suneku's [gitignore](https://git-scm.com/docs/gitignore) includes `.env`, so GitHub will _not_ see, track, or upload the contents of your `.env` file.
+I use my `.env` file to store login credentials. Suneku's [gitignore](https://git-scm.com/docs/gitignore) includes `.env`, so GitHub will not see, track, or upload the contents of your `.env` file.
 
 
 ### store data in ~/suneku/data
 
-From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku `.gitignore` file tells Git not to track files in `/suneku/data/`. Keeping data here helps avoid clogging git with large files.
+From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku `.gitignore` file tells Git not to track files in `/suneku/data/`. Keeping data here helps avoid clogging GitHub with large files.
 
 Remember: GitHub will not track files in this folder, so you need another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
 
@@ -88,7 +88,7 @@ I also like to keep a nearly empty [scratch notebook](https://github.com/samkenn
 
 ## import sunekutools
 
-See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) folder for a description of this package.
+This custom Python package comes pre-installed with every suneku lab. See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) folder for details.
 
 
 ## maintaining and customizing your lab(s)
