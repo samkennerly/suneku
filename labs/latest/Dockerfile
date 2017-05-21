@@ -21,7 +21,8 @@ RUN /opt/conda/bin/pip install --upgrade pip && /opt/conda/bin/pip install --qui
     python-Levenshtein==0.12.0 \
     fuzzywuzzy==0.14.0 \
     jellyfish==0.5.6 \
-    unidecode==0.4.19
+    unidecode==0.4.19 \
+    tweepy==3.5.0
 
 # Tell Python where to find the sunekutools package
 ENV PYTHONPATH=/suneku/

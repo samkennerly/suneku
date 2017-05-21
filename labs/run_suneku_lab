@@ -14,7 +14,8 @@ docker build --tag suneku_lab:latest "$SUNEKU_FOLDER/labs/latest"
 
 # Run a new container in "detached" mode.
 # Mount host machine's ~/suneku/ folder as /suneku/ in the container.
-# Expose ports the Jupyter notebook server will use.
+# Import environment variables from host's ~/suneku/.env file.
+# Expose ports the Jupyter server will use.
 # Make /suneku/ the working directory.
 docker run \
     --detach \
