@@ -1,10 +1,10 @@
 # suneku labs
 
-Each **suneku lab** is a [Docker container](https://docs.docker.com/engine/understanding-docker/) built from this [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile). It is a self-contained data science environment based on the [Anaconda](https://www.continuum.io/blog/developer-blog/anaconda-and-docker-better-together-reproducible-data-science) open-source platform.
+A suneku "lab" is a [Docker container](https://docs.docker.com/engine/understanding-docker/) built from this [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile). It is a self-contained data science environment based on [Anaconda](https://www.continuum.io/blog/developer-blog/anaconda-and-docker-better-together-reproducible-data-science).
 
 ## build a lab
 
-On a Linux or Mac machine with Docker installed, the [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script will automatically build a Docker image and run a Docker container. By default, the container will be named `suneku_lab`. To use another name, specify it when running `run_suneku_lab` like this:
+On a Linux or Mac machine with Docker installed, the [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) script will build a Docker image and run a Docker container. By default, the container will be named `suneku_lab`. To use another name, specify it when running `run_suneku_lab` like this:
 ```
 ~/suneku/labs/run_suneku_lab another_suneku_lab
 ```
@@ -15,9 +15,9 @@ The first time you run a lab, it will need time to download and build an image. 
 
 When a lab misbehaves, try turning it off and on again. Enter these commands in a terminal:
 
-- `docker start suneku_lab` starts a stopped lab.
 - `docker stop suneku_lab` requests the lab to stop running.
 - `docker kill suneku_lab` forces the lab to stop. (Try this if `docker stop` doesn't work.)
+- `docker start suneku_lab` starts a stopped lab.
 - `docker restart suneku_lab` stops and starts a lab which is already running.
 
 
@@ -37,7 +37,7 @@ Some rules of Docker data persistence:
 - Deleting a container deletes all the files in that container. (It does not affect your `~/suneku/` folder.)
 - Deleting an image deletes all the containers which depend on that image.
 
-It is possible to run a Docker container from inside a Docker container, but I dare not go there.
+It is possible to run a Docker container from inside a Docker container, but I never do that.
 
 
 ## Docker commands
