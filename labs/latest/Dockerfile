@@ -5,7 +5,8 @@ MAINTAINER Sam Kennerly <samkennerly@gmail.com>
 # Install general things with apt-get
 RUN apt-get update && apt-get install -y \
     vim \
-    gcc
+    gcc \
+    zip unzip
 
 # Install core Python stuff with conda
 RUN /opt/conda/bin/conda install --yes \
