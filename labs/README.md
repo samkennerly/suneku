@@ -1,6 +1,7 @@
 # suneku labs
 
-A suneku "lab" is a [Docker container](https://docs.docker.com/engine/understanding-docker/) built from this [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile). It is a self-contained data science environment based on [Anaconda](https://www.continuum.io/blog/developer-blog/anaconda-and-docker-better-together-reproducible-data-science).
+A suneku "lab" is a [Docker container](https://docs.docker.com/engine/understanding-docker/) built from this [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile).  
+Each lab is a (mostly) self-contained Python environment based on [Anaconda](https://www.continuum.io/blog/developer-blog/anaconda-and-docker-better-together-reproducible-data-science).
 
 ## build a lab
 
