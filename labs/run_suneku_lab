@@ -5,7 +5,7 @@
 #   optional name of container (default 'my_suneku_lab')
 
 
-CONTAINER_NAME=${1:-my_suneku_lab}
+CONTAINER_NAME=${1:-suneku_lab}
 SUNEKU_FOLDER="$HOME/suneku/"
 ENV_FILE="$SUNEKU_FOLDER.env"
 
