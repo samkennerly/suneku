@@ -14,19 +14,20 @@ ENV_FILE="$HOME/suneku/.env"
 # Build Docker image
 docker build --tag $IMAGE_NAME $DOCKERFILE_FOLDER
 
-# Run a new container in "detached" mode.
+# Run a new container in "interactive" mode with a terminal.
 # Mount host machine's ~/suneku/ folder as /suneku/ in the container.
 # Import credentials as environment variables from your .env file.
 # Expose ports on your local server for the Jupyter server to use.
 # Make /suneku/ the working directory.
 # Run the suneku Jupyter launch script.
 docker run \
-    --detach \
     --name $CONTAINER_NAME \
+    --interactive \
+    --tty \
     --volume "$HOME/suneku/:/suneku/" \
     --env-file $ENV_FILE \
     --publish 8888:8888 \
     --workdir "/suneku/" \
     $IMAGE_NAME \
-    /suneku/labs/start_jupyter
+    /bin/bash /suneku/labs/start_jupyter
     
