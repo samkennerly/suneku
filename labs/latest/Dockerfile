@@ -1,33 +1,20 @@
-FROM continuumio/anaconda3:4.2.0
+FROM continuumio/anaconda3:4.4.0
 
 MAINTAINER Sam Kennerly <samkennerly@gmail.com>
 
 # Install general things with apt-get
 RUN apt-get update && apt-get install -y \
-    vim \
-    gcc \
-    zip unzip
-
-# Install core Python stuff with conda
-RUN /opt/conda/bin/conda install --yes \
-    pyqt=4.11 \
-    jupyter=1.0.0 \
-    pymysql=0.7.9 \
-    seaborn=0.7.1
+    vim gcc zip unzip
 
 # Install more Python stuff with pip
 RUN /opt/conda/bin/pip install --upgrade pip && /opt/conda/bin/pip install --quiet \
-    awscli==1.11.11 \
-    openpyxl==2.4.1 \
-    python-Levenshtein==0.12.0 \
-    fuzzywuzzy==0.14.0 \
+    awscli==1.11.133 \
+    fuzzywuzzy==0.15.1 \
     jellyfish==0.5.6 \
-    unidecode==0.4.19 \
+    python-Levenshtein==0.12.0 \
     tweepy==3.5.0
 
-# Tell Python where to find the sunekutools package
+# Tell Python where to look for custom imports
 ENV PYTHONPATH=/suneku/
 
-# Start Jupyter unless another command is specified
-CMD ["jupyter","notebook","--ip=0.0.0.0","--no-browser"]
-
+ENTRYPOINT ["/bin/bash"]

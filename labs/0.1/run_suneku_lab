@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Tell Docker to build and run a suneku lab.
+# INPUTS
+#   optional name of container (default 'suneku_lab')
+
+CONTAINER_NAME=${1:-suneku_lab}
+VERSION="0.1"
+DOCKERFILE_FOLDER="$HOME/suneku/labs/$VERSION/"
+IMAGE_NAME="suneku_lab:$VERSION"
+
+# Any environment variables you want in your lab should be here
+# An empty text file is OK, but the file must exist!
+ENV_FILE="$HOME/suneku/.env"
+
+# Build Docker image. If it's already built, it will check for updates.
+docker build --tag "$IMAGE_NAME" "$DOCKERFILE_FOLDER"
+
+# Run a new container in "detached" mode.
+# Mount host machine's ~/suneku/ folder as /suneku/ in the container.
+# Import environment variables.
+# Expose ports on your local server for the Jupyter server to use.
+# Make /suneku/ the working directory.
+docker run \
+    --detach \
+    --name "$CONTAINER_NAME" \
+    --volume "$HOME/suneku/":"/suneku/" \
+    --env-file "$ENV_FILE" \
+    --publish 8888:8888 \
+    --workdir="/suneku" \
+    "$IMAGE_NAME"
