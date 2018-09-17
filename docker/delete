@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Delete an existing image.
+# Inputs
+#   $1  optional string: Image tag like 'staging' or 'prod'.
+
+docker rmi "suneku:${1:-latest}" --force

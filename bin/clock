@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+"""
+Print current UTC time at regular intervals.
+Inputs
+  $1  optional int: Number of seconds between each message.
+"""
+from sys import argv
+from time import sleep
+
+from sunekutools import echo
+
+argit = iter(argv)
+script = next(argit)
+seconds = next(argit,1)
+
+print("Run {}".format(script))
+while True:
+    echo('is the current UTC time')
+    sleep(seconds)

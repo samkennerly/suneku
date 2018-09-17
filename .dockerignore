@@ -2,11 +2,9 @@
 /custom/*
 !/custom/README.md
 
-# Caches
-__pycache__/
-*.ipynb_checkpoints/
-*.py[cod]
-*.egg-info
+# Git history
+.git
+.gitignore
 
 # Apple debris
 .DS_Store*

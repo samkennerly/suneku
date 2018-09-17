@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Show existing images, networks, and containers.
+
+docker images
+echo
+docker network ls
+echo
+docker ps --all
+echo

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Build or rebuild an image with code from this repository.
+# Paths matching .dockerignore patterns will *not* be copied into image.
+# Inputs
+#   $1  optional string: Image tag like 'staging' or 'prod'.
+
+repo="$(dirname "$0")"/..
+image="suneku:${1:-latest}"
+docker build --tag $image $repo

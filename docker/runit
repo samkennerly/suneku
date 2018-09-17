@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Run an interactive terminal in a container.
+# Type 'exit' to exit. Container will self-destruct.
+# Inputs
+#   $1  optional string: Image tag like 'staging' or 'prod'.
+#   ... optional strings: Command (and arguments) to run in container.
+
+docker run -it --rm "suneku:${1:-latest}" "${@:2}"

@@ -1,0 +1,30 @@
+version: "3"
+services:
+
+  # Bash shell with repo files mounted to ~/suneku.
+  bash:
+    build: .
+    command: bash
+    container_name: suneku-bash
+    image: suneku:latest
+    volumes:
+      - .:/home/kingofsnake/suneku
+
+  # Jupyter server with repo files mounted to ~/suneku.
+  jupyter:
+    build: .
+    command: jupyter notebook --no-browser --ip=0.0.0.0
+    container_name: suneku-jupyter
+    image: suneku:latest
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - .:/home/kingofsnake/suneku
+      - ./custom/.jupyter:/home/kingofsnake/.jupyter
+
+  # Run a test script with no mounted files.
+  tests:
+    build: .
+    command: python suneku/tests/hello.py
+    container_name: suneku-tests
+    image: suneku:latest
