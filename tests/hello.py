@@ -2,11 +2,12 @@
 """
 Test script: print some messages.
 """
-import sys
-import sunekutools as st
+from sys import implementation as imp
+from sunekutools import echo, fullpath, REPO
 
-print('Python:',sys.version)
-print('Repository:',st.REPO)
-print('Working directory:',st.fullpath())
-
-st.hello(st)
+echo()
+print("Hello, {}!".format(imp.name))
+print('Version:','.'.join(map(str,imp.version)))
+print('Repository:',REPO)
+print('Working directory:',fullpath())
+print()

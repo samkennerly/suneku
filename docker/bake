@@ -6,5 +6,4 @@
 #   $1  optional string: Image tag like 'staging' or 'prod'.
 
 repo="$(dirname "$0")"/..
-image="suneku:${1:-latest}"
-docker build --tag $image $repo
+docker build --tag "suneku:${1:-latest}" $repo

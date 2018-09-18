@@ -13,8 +13,8 @@ from sunekutools import echo
 argit = iter(argv)
 script = next(argit)
 seconds = next(argit,1)
-
 print("Run {}".format(script))
+
 while True:
     echo('is the current UTC time')
     sleep(seconds)
