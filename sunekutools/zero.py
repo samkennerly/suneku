@@ -1,5 +1,5 @@
 """
-Top-level constants and functions imported all before other modules.
+Top-level constants and utility functions.
 """
 from pathlib import Path
 

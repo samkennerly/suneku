@@ -43,10 +43,7 @@ def line(data,**kwargs):
 
 @restyle
 def quantile(data,q=(),**kwargs):
-    """
-    AxesSubplot: Quantiles for each row of DataFrame.
-    Quantiles [0.0,0.5,0.1] are [min,median,max] of each row.
-    """
+    """ AxesSubplot: Quantiles for each row of DataFrame. """
     q = list(q) or [0,0.05,0.25,0.50,0.75,0.95,1]
     data = data.quantile(q=q,axis=1).transpose()
     data.columns = data.columns.astype(str)
