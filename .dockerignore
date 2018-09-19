@@ -1,10 +1,17 @@
+# Git history
+.git
+.gitignore
+
 # Credentials, config files, etc.
 /custom/*
 !/custom/README.md
 
-# Git history
-.git
-.gitignore
+# Caches
+__pycache__
+.cache
+.ipynb_checkpoints
+*.py[cod]
+*.egg-info
 
 # Apple debris
 .DS_Store*
