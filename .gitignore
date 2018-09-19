@@ -3,8 +3,9 @@
 !/custom/README.md
 
 # Caches
-__pycache__/
-*.ipynb_checkpoints/
+__pycache__
+.cache
+.ipynb_checkpoints
 *.py[cod]
 *.egg-info
 
