@@ -9,10 +9,16 @@ x-images:
 
 x-mounts:
 
-  # Mount a folder to access it from inside a container.
+  # Mount entire repo, including hidden files.
+  - &repo
+    bind: {osxfs: delegated}
+    source: .
+    target: /home/kingofsnake/suneku
+    type: bind
+
+  # Special mounts for Jupyter configuration.
   - &ipython ./custom/.ipython:/home/kingofsnake/.ipython
   - &jupyter ./custom/.jupyter:/home/kingofsnake/.jupyter
-  - &suneku .:/home/kingofsnake/suneku
 
 services:
 
@@ -21,7 +27,7 @@ services:
     << : *latest
     command: bash
     container_name: suneku-bash
-    volumes: [*suneku]
+    volumes: [*repo]
 
   # Start Jupyter server: docker-compose up jupyter
   jupyter:
@@ -29,8 +35,7 @@ services:
     command: jupyter notebook --no-browser --ip=0.0.0.0
     container_name: suneku-jupyter
     ports: ["127.0.0.1:8888:8888"]
-    volumes: [*ipython,*jupyter,*suneku]
-    working_dir: /home/kingofsnake/suneku/examples
+    volumes: [*repo,*ipython,*jupyter]
 
   # Test freshly-baked code: docker-compose run tests
   tests:
