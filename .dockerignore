@@ -5,6 +5,7 @@
 __pycache__
 .cache
 .ipynb_checkpoints
+.pytest_cache
 *.py[cod]
 *.egg-info
 
