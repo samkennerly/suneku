@@ -7,14 +7,12 @@ RUN pip3 install --upgrade pip && \
     pip3 install --requirement /tmp/requirements.txt
 
 # Run as user, not as root.
-RUN useradd -m kingofsnake
-USER kingofsnake
-WORKDIR /home/kingofsnake
+RUN useradd -m monty
+USER monty
+WORKDIR /home/monty
 
-# Copy local files into container.
-COPY --chown=kingofsnake . suneku
-
-# Install local code as an editable package.
+# Install suneku as an editable package.
+COPY --chown=monty . suneku
 RUN pip3 install --user --editable suneku
 
-CMD ["/bin/bash"]
+CMD ["python"]

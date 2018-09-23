@@ -1,7 +1,3 @@
-# Credentials, config files, etc.
-/custom/*
-!/custom/README.md
-
 # Caches
 __pycache__
 .cache

@@ -1,10 +1,5 @@
 # Git history
-.git
-.gitignore
-
-# Credentials, config files, etc.
-/custom/*
-!/custom/README.md
+.git*
 
 # Caches
 __pycache__
