@@ -2,9 +2,10 @@
 
 # Show existing images, networks, and containers.
 
-docker images
-echo
-docker network ls
-echo
-docker ps --all
-echo
+bigprint() { printf "\n---------- $1 ----------\n"; }
+
+bigprint 'Images'; docker images
+bigprint 'Volumes'; docker volume ls
+bigprint 'Networks'; docker network ls
+bigprint 'Containers'; docker ps --all
+printf '\n'
