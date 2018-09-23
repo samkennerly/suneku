@@ -8,11 +8,11 @@ Inputs
 from sys import argv
 from time import sleep
 
-from sunekutools import echo
+from suneku import echo
 
 argit = iter(argv)
 script = next(argit)
-seconds = next(argit,1)
+seconds = int(next(argit,1))
 print("Run {}".format(script))
 
 while True:
