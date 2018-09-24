@@ -1,5 +1,11 @@
-# Git history
-.git*
+# Configuration files
+/config/*
+!/config/README.md
+
+# Think about it, Ariadne. How did you get here?
+/docker
+.dockerignore
+docker-compose.yaml
 
 # Caches
 __pycache__

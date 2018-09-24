@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Show existing images, networks, and containers.
+# Display existing images, volumes, networks, and containers.
 
 bigprint() { printf "\n---------- $1 ----------\n"; }
 

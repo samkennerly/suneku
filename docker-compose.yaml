@@ -9,49 +9,38 @@ x-images:
 
 x-mounts:
 
-  # Mount all repository files.
-  - &code
+  # Mount entire repository to ~/suneku in container.
+  - &repo
     type: bind
     bind: {osxfs: delegated}
     source: .
-    target: /home/suneku/code
+    target: /home/dev/suneku
 
-  - &data
-    type: volume
-    source: data
-    target: /home/suneku/data
-
-  # Special mounts for Jupyter configuration.
-  - &ipython ~/.ipython:/home/monty/.ipython
-  - &jupyter ~/.jupyter:/home/monty/.jupyter
-
-volumes:
-
-  data:
-    name: suneku_data
+  # Mount Jupyter configuration to home folder in container.
+  - &ipython ./config/.ipython:/home/dev/.ipython
+  - &jupyter ./config/.jupyter:/home/dev/.jupyter
 
 services:
-
-  # Run an interactive shell: docker-compose run bash
-  bash:
-    << : *latest
-    command: bash
-    container_name: suneku_bash
-    volumes: [*code,*data]
 
   # Start Jupyter server: docker-compose up jupyter
   jupyter:
     <<: *latest
-    command: jupyter notebook --no-browser --ip=0.0.0.0
+    command: jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
     container_name: suneku_jupyter
     ports: ["127.0.0.1:8888:8888"]
-    volumes: [*code,*data,*ipython,*jupyter]
-    working_dir: /home/monty/suneku
+    volumes: [*repo,*ipython,*jupyter]
+    working_dir: /home/dev/suneku/examples
+
+  # Run interactive Python interpreter: docker-compose run python
+  python:
+    << : *latest
+    command: python
+    container_name: suneku_python
+    volumes: [*repo]
 
   # Test new code: docker-compose run tests
-  pytest:
+  tests:
     <<: *latest
     command: pytest suneku
     container_name: suneku_pytest
-    volumes: [*code,*data]
-
+    volumes: [*repo]

@@ -1,3 +1,7 @@
+# Configuration files
+/config/*
+!/config/README.md
+
 # Caches
 __pycache__
 .cache
