@@ -18,16 +18,14 @@ def qrange(data,qbig=0.84,qsmall=0.16):
 def traintest(data,trainfrac=0.25):
     """ 2-tuple: Training and testing views of a DataFrame. """
     data = DataFrame(data)
+
     nrows = len(data)
-    ntrain = int(trainfrac*nrows)
-    ftrain = Series(False,index=range(nrows))
-    ftrain[choice(ftrain.index,size=ntrain,replace=False)] = True
+    nkeep = int(trainfrac * nrows)
+    train = Series(False,index=range(nrows))
+    train[choice(train.index,size=nkeep,replace=False)] = True
+    print("Train with {:,} of {:,} rows".format(nkeep,nrows))
 
-    train,test = data.loc[ftrain],data.loc[~ftrain]
-    print("{:,} training rows".format(len(train)))
-    print("{:,} testing rows".format(len(test)))
-
-    return train,test
+    return data.loc[train], data.loc[~train]
 
 class LogisticClassifier:
     """
@@ -35,7 +33,6 @@ class LogisticClassifier:
     Return a DataFrame with category and probability for each row.
 
     Initialize using training data with known categories.
-    Pre-processing and learning are automatic.
     Call with new data to classify each row.
 
     Input

@@ -1,6 +1,6 @@
 """
-Example Python 3 package for a data science container.
+Example Python package.
 """
-from .zero import REPO, echo, fullpath, hello, isotime, zulutime
+from .zero import REPO, echo, fullpath, hello, isonow, zulutime
 from . import classifier
 from . import plot

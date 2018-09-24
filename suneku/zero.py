@@ -9,7 +9,7 @@ REPO = Path(__file__).resolve().parent.parent
 
 def echo(msg=''):
     """ None: Print timestamped message. """
-    print(isotime()[:19].replace('T',' '),msg)
+    print(isonow()[:19].replace('T',' '),msg)
 
 def fullpath(path_or_str=''):
     """
@@ -27,8 +27,8 @@ def hello(obj):
     """ None: Print short description of any Python object. """
     print(type(obj).__name__,obj.__doc__,sep='\n')
 
-def isotime():
-    """ str: Current UTC date and time in ISO format. """
+def isonow():
+    """ str: Current UTC date and time in ISO-format microseconds. """
     return Timestamp.utcnow().tz_localize(None).isoformat()
 
 def zulutime(t):
@@ -38,9 +38,9 @@ def zulutime(t):
     OR DatetimeIndex: UTC Timestamps from iterable input.
     """
     t = to_datetime(t,cache=True,utc=True)
-    t = t.dt if isinstance(t,Series) else t
+    t = (t.dt if isinstance(t,Series) else t).tz_localize(None)
 
-    return t.tz_localize(None)
+    return t
 
 
 
