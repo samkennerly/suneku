@@ -22,9 +22,16 @@ x-mounts:
 
 services:
 
+  # Example service: docker-compose up clock
+  clock:
+    << : *latest
+    command: suneku/bin/clock
+    container_name: suneku_clock
+    tty: true
+
   # Start Jupyter server: docker-compose up jupyter
   jupyter:
-    <<: *latest
+    << : *latest
     command: jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
     container_name: suneku_jupyter
     ports: ["127.0.0.1:8888:8888"]
@@ -38,9 +45,18 @@ services:
     container_name: suneku_python
     volumes: [*repo]
 
-  # Test new code: docker-compose run tests
+  # Test latest code: docker-compose run tests
   tests:
-    <<: *latest
-    command: pytest suneku
+    << : *latest
+    command: pytest suneku/tests
     container_name: suneku_pytest
     volumes: [*repo]
+
+  # Show full paths inside container: docker-compose run whereami
+  whereami:
+    << : *latest
+    command: suneku/bin/whereami
+    container_name: suneku_wherami
+
+
+

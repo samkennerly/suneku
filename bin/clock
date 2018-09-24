@@ -10,11 +10,11 @@ from time import sleep
 
 from suneku import echo
 
-argit = iter(argv)
-script = next(argit)
-seconds = int(next(argit,1))
+args = iter(argv)
+script = next(args)
+seconds = int(next(args,1))
 print("Run {}".format(script))
 
 while True:
-    echo('is the current UTC time')
+    echo('is the current UTC time. Press CTRL-C to exit.')
     sleep(seconds)
