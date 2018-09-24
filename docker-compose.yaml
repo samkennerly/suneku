@@ -9,14 +9,14 @@ x-images:
 
 x-mounts:
 
-  # Mount entire repository to ~/suneku in container.
+  # Mount entire repository to ~/suneku.
   - &repo
     type: bind
     bind: {osxfs: delegated}
     source: .
     target: /home/dev/suneku
 
-  # Mount Jupyter configuration to home folder in container.
+  # Mount Jupyter configuration folders to home folder.
   - &ipython ./config/.ipython:/home/dev/.ipython
   - &jupyter ./config/.jupyter:/home/dev/.jupyter
 
@@ -45,18 +45,11 @@ services:
     container_name: suneku_python
     volumes: [*repo]
 
-  # Test latest code: docker-compose run tests
+  # Test freshly-baked code: docker-compose run tests
   tests:
     << : *latest
     command: pytest suneku/tests
     container_name: suneku_pytest
-    volumes: [*repo]
-
-  # Show full paths inside container: docker-compose run whereami
-  whereami:
-    << : *latest
-    command: suneku/bin/whereami
-    container_name: suneku_wherami
 
 
 

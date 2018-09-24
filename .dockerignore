@@ -5,6 +5,7 @@
 # Think about it, Ariadne. How did you get here?
 /docker
 .dockerignore
+Dockerfile
 docker-compose.yaml
 
 # Caches
