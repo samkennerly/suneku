@@ -146,8 +146,7 @@ Suneku and virtualenv both keep their Python packages isolated from other Python
 ### Is this like [anaconda](https://www.anaconda.com/what-is-anaconda/)?
 
 Anaconda is separate from the system Python(s), but it shares the same OS, system installs, users, and filesystem. Docker containers are more isolated from the host machine. For those who want both, the Anaconda team releases
-[Docker images with Anaconda pre-installed]
-(https://hub.docker.com/r/continuumio/anaconda3/).
+[Docker images with Anaconda pre-installed](https://hub.docker.com/r/continuumio/anaconda3/).
 
 ### What does `pip install --user --editable` do?
 
