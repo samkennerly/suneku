@@ -1,96 +1,168 @@
-# start doing data science with suneku
+# suneku
 
-Suneku is a complete environment for analyzing data using [Python 3](https://www.python.org/).  
-Suneku "labs" are similar to the [data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/) used by [Kaggle](https://www.kaggle.com/).  
-These labs are designed to be easily built, customized, rebuilt, and shared.
+*Suneku* builds and runs examples of Python
+[data science containers](http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/).  
 
-Suneku works best for data which fits comfortably in your computer's RAM.  
-For larger datasets, I use [Databricks](https://databricks.com/) to run a [Spark cluster](http://spark.apache.org/).
+## more science, less installing stuff
 
-Here are some things you can do with a suneku lab:
-* [load, inspect, and clean a table](https://github.com/samkennerly/suneku/blob/master/practice/practice.ipynb)
-* [make complicated plots quickly](https://github.com/samkennerly/suneku/blob/master/sunekutools/viz/viz.ipynb)
-* [train a machine to classify flowers](https://github.com/samkennerly/suneku/blob/master/sunekutools/ml/logistic_classifier.ipynb)
+The
+[SciPy ecosystem](https://www.scipy.org/about.html)
+and a huge variety of
+[topical software](https://www.scipy.org/topical-software.html)
+have made Python into a powerful scientific computing toolbox,
+but it can easily become a highway to [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+
+*Suneku* uses
+[Docker Compose](https://docs.docker.com/compose/)
+to run containers with pre-installed software. *Docker* and this repository are the only dependencies. *Suneku* downloads everything else it needs:
+
+- the specific Python version used to develop *suneku*
+- all Python packages in [requirements.txt](requirements.txt)
+- any required system packages unrelated to Python
+- [Jupyter](http://jupyter.org/) and its requirements
+
+Installed software is saved to a
+[Docker image](https://docs.docker.com/get-started/#images-and-containers)
+and re-used on subsequent builds. When a container malfunctions, it can be destroyed and rebuilt quickly without affecting other software on your machine. This makes containers especially useful as 
+[sandboxes](https://en.wikipedia.org/wiki/Sandbox_(software_development)). 
+
+Dependencies are specified in a few human-readable files:  
+
+* [Dockerfile](Dockerfile)
+tells Docker how to build a `suneku` image.
+* [requirements.txt](requirements.txt)
+tells
+[pip](https://pypi.org/project/pip/)
+what Python packages to install inside the image.
+* [docker-compose.yaml](docker-compose.yaml)
+tells Docker Compose how to run pre-defined
+[services](https://docs.docker.com/compose/gettingstarted/#step-3-define-services-in-a-compose-file).
+
+## get suneku
+
+1. Install
+[Docker for Mac](https://docs.docker.com/docker-for-mac/install/) or
+[Windows](https://docs.docker.com/docker-for-windows/install/) or
+[Linux](https://docs.docker.com/install/#supported-platforms).
+2. [Clone this repository](https://help.github.com/articles/cloning-a-repository/) to any folder on your machine.
+
+*Suneku* never modifies
+[anaconda](https://www.anaconda.com/what-is-anaconda/),
+[pip](https://pypi.org/project/pip/),
+[brew](https://brew.sh/),
+[virtualenv](https://virtualenv.pypa.io/en/stable/),
+nor any system Pythons.
+
+## run containers
+
+Open a terminal and `cd` to wherever you cloned this repository.
+
+### test suneku
+* `docker-compose up clock` starts an example service.
+* `docker-compose run tests` tests code in the [suneku](suneku) package.
+
+### run python
+1. `docker-compose run python` opens a Python interpreter.
+2. `import suneku` imports the [suneku](suneku) package.
+3. `exit()` exits Python and stops the container.
+
+### start jupyter
+1. `docker-compose up jupyter` starts a Jupyter server.
+2. Open a browser and enter `127.0.0.1:8888` in the address bar.
+3. `CTRL-C` in the terminal exits Jupyter and stops the container.
+
+See
+[config/README.md](config/README.md)
+for Jupyter configuration details.
+
+### burn it all down and start over
+1. `docker-compose down` gently stops and deletes *suneku* containers.
+1. `docker/clean` deletes all containers and any Docker leftovers.
+2. `docker/delete` deletes the `suneku:latest` Docker image.
+
+## config folder
+
+Secrets and configuration files go here. See
+[config/README.md](config/README.md)
+for details.
+
+## docker scripts
+
+The
+[docker](docker)
+folder contains bash scripts which run Docker commands.   
+
+## example notebooks
+
+The
+[examples](examples)
+folder contains
+[Jupyter notebooks](http://jupyter.org/)
+demonstrating the
+[suneku](suneku) package.
+
+### data sources
+
+* [NewYorkEnergy.csv](examples/data/NewYorkEnergy.csv)
+from
+[data.ny.gov](https://data.ny.gov/Energy-Environment/Electric-Generation-By-Fuel-Type-GWh-Beginning-196/h4gs-8qnu)  
+GWh of electricity generated in New York since 1980.
+* [ZonalTempAnomaly.csv](examples/data/ZonalTempAnomaly.csv)
+from [data.giss.nasa.gov](https://data.giss.nasa.gov/gistemp/)  
+Global surface temperature anomalies since 1880.
+
+## suneku package
+
+The
+[suneku](suneku)
+folder is an example Python package.  
+To comply with
+[PEP 423](https://www.python.org/dev/peps/pep-0423/#use-a-single-name),
+it is also named *suneku*.
+
+### modules
+* [suneku.classifier](suneku/classifier.py):
+[Probabilistic classification](https://en.wikipedia.org/wiki/Probabilistic_classification)
+using
+[scikit-learn](http://scikit-learn.org/)
+and
+[pandas](https://pandas.pydata.org/).
+* [suneku.plot](suneku/plot.py):
+Data visualization using
+[matplotlib](https://matplotlib.org/) and
+[pandas](https://pandas.pydata.org/).
+* [suneku.zero](suneku/zero.py):
+Constants and functions shared by other modules.
 
 
 
-## ingredients
 
-A suneku lab is a [Docker container](https://www.docker.com/what-docker) which starts a [Jupyter](http://jupyter.org/) server. (If you've never used Jupyter, see below for a quick introduction.) Each lab comes pre-installed with many Python packages including:
-* [pandas](http://pandas.pydata.org/) for loading, cleaning, and transforming tables
-* [seaborn](http://seaborn.pydata.org/) for generating plots and figures
-* [scikit-learn](http://scikit-learn.org/stable/) for training and testing machine-learning algorithms
-* the complete [Anaconda 3](https://docs.continuum.io/anaconda/pkg-docs) package list
-* the custom [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) package
+## FAQ
 
+### Is this like [virtualenv](https://virtualenv.pypa.io/en/stable/)?
 
-## build your own suneku lab
+Suneku and virtualenv both keep their Python packages isolated from other Pythons on the same machine. Suneku also has its own isolated OS, system installs, users, and directories.
 
-### Mac or Linux
-1. Install [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [Docker for Linux](https://docs.docker.com/engine/installation/linux/).
-2. Use [git clone](https://help.github.com/articles/cloning-a-repository/) to clone this repository into your home folder.  This will create a `~/suneku/` folder.
-3. Create a blank text file called `.env` in your `~/suneku/` folder.
-4. Run the script [~/suneku/labs/run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab). This will build a lab and start a Jupyter server.
-5. Open your favorite web browser and go to `0.0.0.0:8888`. You should see a Jupyter notebook.
-6. Click on `/practice/` and open the `practice.ipynb` notebook to start doing data science.
+### Is this like [anaconda](https://www.anaconda.com/what-is-anaconda/)?
 
+Anaconda is separate from the system Python(s), but it shares the same OS, system installs, users, and filesystem. Docker containers are more isolated from the host machine. For those who want both, the Anaconda team releases
+[Docker images with Anaconda pre-installed](https://hub.docker.com/r/continuumio/anaconda3/).
 
-### Windows
+### What does `pip install --user --editable` do?
 
-[Docker for Windows](https://docs.docker.com/docker-for-windows/) can build and run labs which can be shared with any Mac or Linux user. The only catch is: you may need to write your own setup script if [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab) does not work.
+Code in the
+[suneku](suneku)
+folder is installed as an
+[editable Python package](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs)
+to ensure the Python interpreter can import it without relying on
+[PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
+or modifying
+[sys.path](https://docs.python.org/3/library/sys.html#sys.path).
 
+### Can Docker run containers inside containers?
 
-## Jupyter notebooks
-
-Jupyter notebooks are useful for "exploratory data analysis," which is a polite name for projects in which you don't know precisely what you're doing yet. I use them to inspect data for quality and formatting issues, quickly test hypotheses, and export human-readable reports. My typical workflow looks like this:
-
-* Open a notebook.
-* Import packages with Python `import` statements.
-* Type some Python code in a cell.
-* Hit Shift-Enter to run that cell and inspect the output.
-* Oops, that's not actually what I meant to do. Edit my code and try again.
-* Whenever I do something useful, I save the notebook and go to the next cell.
-
-For more details, see this [Jupyter tutorial](http://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb).
-
-When I create a new notebook (let's call it `my_project.ipynb`), I often create a `my_project.py` file in the same folder. I view the notebook in a web browser and open `my_project.py` in a text editor side-by-side on one big screen. I keep most of my code in `my_project.py` and run `from my_project import *` in the first cell of my notebook. This reduces clutter in my notebooks so there's more space for text, plots, and results.
-
-GitHub can automatically render Jupyter notebooks! If you upload a notebook to GitHub, anyone can view it in a web browser without installing software or running scripts.
+![*squints*](examples/data/squint.png)
 
 
-## about your ~/suneku/ folder
-
-For the most part, suneku labs avoid interacting with other files and programs on their host computer. Two big exceptions are: they connect to `0.0.0.0:8888` so the web browser can find the Jupyter server, and they link their own `/suneku/` folder to the host machine's `~/suneku/` folder.
-
-**If you modify the `/suneku/` folder inside a suneku lab, your `~/suneku/` folder will be modified.** The `/suneku/` folder is not really "inside" a container; it is the host machine's `~/suneku/` folder [mounted as a data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume).
 
 
-### store environment variables in ~/suneku/.env
-
-Any [environment variables](https://en.wikipedia.org/wiki/Environment_variable) declared in this file will be automatically loaded when you execute [run_suneku_lab](https://github.com/samkennerly/suneku/blob/master/labs/run_suneku_lab). It's OK to leave your `.env` file blank, but the file must exist.
-
-I use my `.env` file to store login credentials. Suneku's [gitignore](https://git-scm.com/docs/gitignore) includes `.env`, so GitHub will not see, track, or upload the contents of your `.env` file.
-
-
-### store data in ~/suneku/data
-
-From inside a lab, this folder will appear as `/suneku/data/` without the `~`. The suneku `.gitignore` file tells Git not to track files in `/suneku/data/`. Keeping data here helps avoid clogging GitHub with large files.
-
-Remember: GitHub will not track files in this folder, so you need another way to backup data. I use an [S3 bucket](https://aws.amazon.com/s3/) for backup and sharing, and all suneku labs come with [`awscli`](https://aws.amazon.com/cli/) pre-installed.
-
-
-### store prototypes and untested code in ~/suneku/studies/
-
-When I write code which is well-tested and intended to be re-used often, I usually save it to a subfolder of `~/suneku/sunekutools/`. To avoid clutter, other code usually goes in a subfolder of `~/suneku/studies/`. (Remember, you don't need the `~` from inside a lab.)
-
-I also like to keep a nearly empty [scratch notebook](https://github.com/samkennerly/suneku/blob/master/studies/scratch.ipynb) in my `~/suneku/studies/` folder for easy access when I need to try something quickly.
-
-
-## import sunekutools
-
-This custom Python package comes pre-installed with every suneku lab. See the [sunekutools](https://github.com/samkennerly/suneku/tree/master/sunekutools) folder for details.
-
-
-## maintaining and customizing your lab(s)
-
-To add or remove packages, modify the [Dockerfile](https://github.com/samkennerly/suneku/blob/master/labs/latest/Dockerfile) and build a new lab. The [labs](https://github.com/samkennerly/suneku/tree/master/labs) folder contains a very brief intro to Docker and some common commands.

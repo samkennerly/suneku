@@ -1,0 +1,55 @@
+version: "3.7"
+
+x-images:
+
+  # Use latest image if available; else build it.
+  &latest
+  build: .
+  image: suneku:latest
+
+x-mounts:
+
+  # Mount entire repository to ~/suneku.
+  - &repo
+    type: bind
+    bind: {osxfs: delegated}
+    source: .
+    target: /home/dev/suneku
+
+  # Mount Jupyter configuration folders to home folder.
+  - &ipython ./config/.ipython:/home/dev/.ipython
+  - &jupyter ./config/.jupyter:/home/dev/.jupyter
+
+services:
+
+  # Example service: docker-compose up clock
+  clock:
+    << : *latest
+    command: suneku/bin/clock
+    container_name: suneku_clock
+    tty: true
+
+  # Start Jupyter server: docker-compose up jupyter
+  jupyter:
+    << : *latest
+    command: jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
+    container_name: suneku_jupyter
+    ports: ["127.0.0.1:8888:8888"]
+    volumes: [*repo,*ipython,*jupyter]
+    working_dir: /home/dev/suneku/examples
+
+  # Run interactive Python interpreter: docker-compose run python
+  python:
+    << : *latest
+    command: python
+    container_name: suneku_python
+    volumes: [*repo]
+
+  # Test freshly-baked code: docker-compose run tests
+  tests:
+    << : *latest
+    command: pytest suneku/tests
+    container_name: suneku_pytest
+
+
+

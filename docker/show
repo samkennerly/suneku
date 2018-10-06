@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Display existing images, volumes, networks, and containers.
+
+bigprint() { printf "\n---------- $1 ----------\n"; }
+
+bigprint 'Images'; docker images
+bigprint 'Volumes'; docker volume ls
+bigprint 'Networks'; docker network ls
+bigprint 'Containers'; docker ps --all
+printf '\n'

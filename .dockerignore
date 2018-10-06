@@ -2,6 +2,12 @@
 /config/*
 !/config/README.md
 
+# Think about it, Ariadne. How did you get here?
+/docker
+.dockerignore
+Dockerfile
+docker-compose.yaml
+
 # Caches
 __pycache__
 .cache

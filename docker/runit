@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Run an interactive terminal in a container.
+# Type 'exit' to exit. Container will self-destruct.
+# Any extra arguments are passed to container.
+
+docker run -it --rm suneku:latest "$@"
