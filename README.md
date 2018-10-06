@@ -5,24 +5,38 @@
 
 ## more science, less installing stuff
 
-Python's many powerful
-[scientific computing tools](https://www.scipy.org/about.html)
-can easily trap scientists in
-[dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
-The huge number of (package,version) combinations can make sharing code difficult or impossible.
+The
+[SciPy ecosystem](https://www.scipy.org/about.html)
+and a huge variety of
+[topical software](https://www.scipy.org/topical-software.html)
+have made Python into a powerful scientific computing toolbox,
+but it can easily become a highway to [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
 
 *Suneku* uses
 [Docker Compose](https://docs.docker.com/compose/)
-to run containers with all software pre-installed:
+to run containers with pre-installed software. *Docker* and this repository are the only dependencies. *Suneku* downloads everything else it needs:
 
 - the specific Python version used to develop *suneku*
 - all Python packages in [requirements.txt](requirements.txt)
 - any required system packages unrelated to Python
 - [Jupyter](http://jupyter.org/) and its requirements
 
-Containers are especially useful as 
-[sandboxes](https://en.wikipedia.org/wiki/Sandbox_(software_development))
-for experimentation. When a container malfunctions, it can be destroyed and rebuilt quickly without affecting other software on your machine.
+Installed software is saved to a
+[Docker image](https://docs.docker.com/get-started/#images-and-containers)
+and re-used on subsequent builds. When a container malfunctions, it can be destroyed and rebuilt quickly without affecting other software on your machine. This makes containers especially useful as 
+[sandboxes](https://en.wikipedia.org/wiki/Sandbox_(software_development)). 
+
+Dependencies are specified in a few human-readable files:  
+
+* [Dockerfile](Dockerfile)
+tells Docker how to build a `suneku` image.
+* [requirements.txt](requirements.txt)
+tells
+[pip](https://pypi.org/project/pip/)
+what Python packages to install inside the image.
+* [docker-compose.yaml](docker-compose.yaml)
+tells Docker Compose how to run pre-defined
+[services](https://docs.docker.com/compose/gettingstarted/#step-3-define-services-in-a-compose-file).
 
 ## get suneku
 
@@ -44,13 +58,12 @@ nor any system Pythons.
 Open a terminal and `cd` to wherever you cloned this repository.
 
 ### test suneku
-* `docker-compose up clock` starts an example
-[service](https://docs.docker.com/compose/gettingstarted/#step-3-define-services-in-a-compose-file).
-* `docker-compose run tests` tests code in the *suneku* package.
+* `docker-compose up clock` starts an example service.
+* `docker-compose run tests` tests code in the [suneku](suneku) package.
 
 ### run python
 1. `docker-compose run python` opens a Python interpreter.
-2. `import suneku` imports the *suneku* package.
+2. `import suneku` imports the [suneku](suneku) package.
 3. `exit()` exits Python and stops the container.
 
 ### start jupyter
@@ -58,7 +71,9 @@ Open a terminal and `cd` to wherever you cloned this repository.
 2. Open a browser and enter `127.0.0.1:8888` in the address bar.
 3. `CTRL-C` in the terminal exits Jupyter and stops the container.
 
-See [config/README.md](config/README.md) for Jupyter configuration details.
+See
+[config/README.md](config/README.md)
+for Jupyter configuration details.
 
 ### burn it all down and start over
 1. `docker-compose down` gently stops and deletes *suneku* containers.
@@ -68,52 +83,82 @@ See [config/README.md](config/README.md) for Jupyter configuration details.
 ## config folder
 
 Secrets and configuration files go here. See
-[config/README.md](config/README.md) for details.
+[config/README.md](config/README.md)
+for details.
 
 ## docker scripts
 
-The [docker](docker) folder contains bash scripts which run Docker commands.   
-See the comments in each script for details.
+The
+[docker](docker)
+folder contains bash scripts which run Docker commands.   
 
 ## example notebooks
 
-The [examples](examples) folder 
+The
+[examples](examples)
+folder contains
+[Jupyter notebooks](http://jupyter.org/)
+demonstrating the
+[suneku](suneku) package.
+
+### data sources
+
+* [NewYorkEnergy.csv](examples/data/NewYorkEnergy.csv)
+from
+[data.ny.gov](https://data.ny.gov/Energy-Environment/Electric-Generation-By-Fuel-Type-GWh-Beginning-196/h4gs-8qnu)  
+GWh of electricity generated in New York since 1980.
+* [ZonalTempAnomaly.csv](examples/data/ZonalTempAnomaly.csv)
+from [data.giss.nasa.gov](https://data.giss.nasa.gov/gistemp/)  
+Global surface temperature anomalies since 1880.
 
 ## suneku package
 
-This is an example Python package. To comply with
+The
+[suneku](suneku)
+folder is an example Python package.  
+To comply with
 [PEP 423](https://www.python.org/dev/peps/pep-0423/#use-a-single-name),
 it is also named *suneku*.
 
-* The
-[classifier](suneku/classifier.py) module uses
-[scikit-learn](http://scikit-learn.org/) and
-[pandas](https://pandas.pydata.org/) to build a
-[probabilistic classifier](https://en.wikipedia.org/wiki/Probabilistic_classification).
-* The
-[plot](suneku/plot.py) module uses
+### modules
+* [suneku.classifier](suneku/classifier.py):
+[Probabilistic classification](https://en.wikipedia.org/wiki/Probabilistic_classification)
+using
+[scikit-learn](http://scikit-learn.org/)
+and
+[pandas](https://pandas.pydata.org/).
+* [suneku.plot](suneku/plot.py):
+Data visualization using
 [matplotlib](https://matplotlib.org/) and
-[pandas](https://pandas.pydata.org/) to visualize data.
-* The
-[zero](suneku/zero.py)
-module defines constants and functions for use by other modules.
+[pandas](https://pandas.pydata.org/).
+* [suneku.zero](suneku/zero.py):
+Constants and functions shared by other modules.
+
+
 
 
 ## FAQ
 
 ### Is this like [virtualenv](https://virtualenv.pypa.io/en/stable/)?
 
-*Docker Compose* and *virtualenv* are both commonly used to build isolated
-[environments](https://en.wikipedia.org/wiki/Deployment_environment)
-for developing and testing software. *Suneku* is intended as a bigger, blunter *virtualenv* which includes Python packages _and_ its own separate OS, system installs, users, and directories.
+Suneku and virtualenv both keep their Python packages isolated from other Pythons on the same machine. Suneku also has its own isolated OS, system installs, users, and directories.
 
 ### Is this like [anaconda](https://www.anaconda.com/what-is-anaconda/)?
 
-*Anaconda* normally installs itself separately from the system Python(s), but it is less isolated than a Docker container. It shares the same OS, system installs, users, and filesystem as the host machine. The Anaconda team also releases
-[Docker images](https://hub.docker.com/r/continuumio/anaconda3/)
-for running containers with Anaconda pre-installed.
+Anaconda is separate from the system Python(s), but it shares the same OS, system installs, users, and filesystem. Docker containers are more isolated from the host machine. For those who want both, the Anaconda team releases
+[Docker images with Anaconda pre-installed]
+(https://hub.docker.com/r/continuumio/anaconda3/).
 
 ### What does `pip install --user --editable` do?
+
+Code in the
+[suneku](suneku)
+folder is installed as an
+[editable Python package](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs)
+to ensure the Python interpreter can import it without relying on
+[PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
+or modifying
+[sys.path](https://docs.python.org/3/library/sys.html#sys.path).
 
 ### Can Docker run containers inside containers?
 

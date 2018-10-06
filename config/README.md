@@ -10,7 +10,7 @@ This README is the only exception. All other files are:
 - available inside a container **only if** they are
 [mounted](https://docs.docker.com/storage/bind-mounts/)
 
-### jupyter configuration
+### `.ipython` and `.jupyter` folders
 
 *Suneku* stores IPython and Jupyter configuration files in this folder.  
 To use your existing configuration files,
