@@ -21,6 +21,3 @@ to them from here:
 ln -s config/.ipython /path/to/your/.ipython
 ln -s config/.jupyter /path/to/your/.jupyter
 ```
-
-
-
