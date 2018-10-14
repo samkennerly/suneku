@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# Delete the suneku image.
-
-docker rmi suneku:latest --force

@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Delete "dangling" and unreferenced images.
-# Delete all networks except Docker defaults.
-# Delete all containers except named data volumes.
-
-docker ps -q | xargs docker kill
-docker system prune --force

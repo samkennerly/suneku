@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# Build or rebuild the suneku image.
-
-docker build --tag suneku:latest "$(dirname "$0")/.."
