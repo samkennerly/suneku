@@ -82,7 +82,7 @@ To comply with
 [PEP 423](https://www.python.org/dev/peps/pep-0423/#use-a-single-name),
 it has the same name as this repository.  
 The `suneku:latest` image includes it as an
-[editable Python package](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs).
+[editable pip install](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs).
 
 See the
 [examples](examples)
