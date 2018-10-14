@@ -2,6 +2,11 @@
 /config/*
 !/config/README.md
 
+# Data files
+/data/*
+!/data/NewYorkEnergy.csv
+!/data/ZonalTempAnomaly.csv
+
 # Caches
 __pycache__
 .cache

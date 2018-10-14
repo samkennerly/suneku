@@ -2,6 +2,11 @@
 /config/*
 !/config/README.md
 
+# Data files
+/data/*
+!/data/NewYorkEnergy.csv
+!/data/ZonalTempAnomaly.csv
+
 # Think about it, Ariadne. How did you get here?
 /docker
 .dockerignore
