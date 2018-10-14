@@ -3,16 +3,18 @@ LABEL maintainer="samkennerly@gmail.com"
 
 # Install Python packages.
 COPY requirements.txt /tmp
-RUN pip3 install --upgrade pip && \
-    pip3 install --requirement /tmp/requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --requirement /tmp/requirements.txt
 
 # Run as user, not as root.
-RUN useradd -m dev
-USER dev
-WORKDIR /home/dev
+RUN useradd -u 1000 -m 1000
+USER 1000
+WORKDIR /home/1000
+
+# Copy repository files into image.
+COPY --chown=1000 . suneku
 
 # Install the suneku package.
-COPY --chown=dev . suneku
-RUN pip3 install --user --editable suneku
+RUN pip install --user --editable suneku
 
 CMD ["/bin/bash"]

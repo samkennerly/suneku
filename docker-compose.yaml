@@ -9,20 +9,20 @@ x-images:
 
 x-mounts:
 
-  # Mount entire repository to ~/suneku.
+  # Mount entire repository, including hidden folders.
   - &repo
     type: bind
     bind: {osxfs: delegated}
     source: .
-    target: /home/dev/suneku
+    target: /home/1000/suneku
 
-  # Mount Jupyter configuration folders to home folder.
-  - &ipython ./config/.ipython:/home/dev/.ipython
-  - &jupyter ./config/.jupyter:/home/dev/.jupyter
+  # Create or mount Jupyter configuration folders.
+  - &ipython ./config/.ipython:/home/1000/.ipython
+  - &jupyter ./config/.jupyter:/home/1000/.jupyter
 
 services:
 
-  # Example service: docker-compose up clock
+  # Start example service: docker-compose up clock
   clock:
     << : *latest
     command: suneku/bin/clock
@@ -36,20 +36,17 @@ services:
     container_name: suneku_jupyter
     ports: ["127.0.0.1:8888:8888"]
     volumes: [*repo,*ipython,*jupyter]
-    working_dir: /home/dev/suneku/examples
+    working_dir: /home/1000/suneku/examples
 
-  # Run interactive Python interpreter: docker-compose run python
+  # Run Python interactively: docker-compose run python
   python:
     << : *latest
     command: python
     container_name: suneku_python
     volumes: [*repo]
 
-  # Test freshly-baked code: docker-compose run tests
+  # Test code in image: docker-compose run tests
   tests:
     << : *latest
     command: pytest suneku/tests
     container_name: suneku_pytest
-
-
-
