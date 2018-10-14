@@ -2,7 +2,9 @@
 
 Example Python
 [package](https://docs.python.org/3/tutorial/modules.html#packages)
-which builds its own
+which uses
+[Docker](https://www.docker.com/)
+to build its own
 [Python runtime](https://docs.docker.com/get-started/part2/#your-new-development-environment).
 
 ## bring your favorite Python everywhere
@@ -27,7 +29,7 @@ defined in
 - run its own
 [Jupyter notebook server](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
-*Suneku* installs software to the `suneku:latest` image, not to your machine.  
+*Suneku* installs software to a Docker image, not to the host machine.  
 It never modifies
 [anaconda](https://www.anaconda.com/what-is-anaconda/),
 [pip](https://pypi.org/project/pip/),
@@ -46,6 +48,9 @@ or
 2. [Clone this repository](https://help.github.com/articles/cloning-a-repository/) to any folder on your machine.
 3. Open a terminal and `cd` to that folder.
 4. Enter `docker-compose run clock` to run an example service.
+
+Docker will download everything it needs to build a `suneku:latest` image.  
+Subsequent runs re-use this image and are much faster.
 
 See the
 [dockerbash](https://github.com/samkennerly/dockerbash)
@@ -85,8 +90,6 @@ folder for notebooks demonstrating the package.
 Notebooks can be
 [viewed in GitHub](https://help.github.com/articles/working-with-jupyter-notebook-files-on-github/)
 without running Jupyter.
-
-
 
 ## jupyter server
 
