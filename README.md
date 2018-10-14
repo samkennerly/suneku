@@ -93,7 +93,7 @@ without running Jupyter.
 
 ## jupyter server
 
-1. Enter `docker-compose run jupyter` to ensure the server is running.  
+1. Enter `docker-compose up jupyter` to ensure the server is running.  
 2. Open a browser and enter `127.0.0.1:8888` in the address bar.  
 3. If Jupyter demands a token, then copypaste it from the terminal.
 
