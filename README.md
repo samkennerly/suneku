@@ -1,11 +1,10 @@
 # suneku
 
-Example Python
-[package](https://docs.python.org/3/tutorial/modules.html#packages)
-which uses
 [Docker](https://www.docker.com/)
-to build its own
-[Python runtime](https://docs.docker.com/get-started/part2/#your-new-development-environment).
+example: a Python
+[package](https://docs.python.org/3/tutorial/modules.html#packages)
+which builds its own
+[Python](https://docs.docker.com/get-started/part2/#your-new-development-environment).
 
 ## bring your favorite Python everywhere
 
