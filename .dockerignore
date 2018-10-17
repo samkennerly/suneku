@@ -7,6 +7,9 @@
 !/data/NewYorkEnergy.csv
 !/data/ZonalTempAnomaly.csv
 
+# Git history
+.git/*
+
 # Think about it, Ariadne. How did you get here?
 /docker
 .dockerignore
