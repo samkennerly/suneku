@@ -1,23 +1,22 @@
-# Configuration files
 /config/*
 !/config/README.md
-
-# Data files
 /data/*
 !/data/NewYorkEnergy.csv
 !/data/ZonalTempAnomaly.csv
 
-# Caches
-__pycache__
-.cache
-.ipynb_checkpoints
-.pytest_cache
-*.py[cod]
-*.egg-info
-
-# Apple debris
+# Apple
 .DS_Store*
 .Spotlight-*
 .Trashes
 .fseventsd
 Thumbs.db
+
+# Python
+*.py[cod]
+*.egg
+*.egg-info
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv
+jupyter_notebook_config.*
