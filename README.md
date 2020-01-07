@@ -1,4 +1,8 @@
-# suneku
+# suneku (ARCHIVED)
+
+## This repo has been replaced by [kingofsnake].
+
+[kingofsnake]: https://github.com/samkennerly/kingofsnake/
 
 [Docker](https://www.docker.com/)
 example: a Python
@@ -28,13 +32,13 @@ defined in
 - run its own
 [Jupyter notebook server](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
-*Suneku* installs software to a Docker image, not to the host machine.  
+*Suneku* installs software to a Docker image, not to the host machine.
 It never modifies
 [anaconda](https://www.anaconda.com/what-is-anaconda/),
 [pip](https://pypi.org/project/pip/),
 [brew](https://brew.sh/),
 [virtualenv](https://virtualenv.pypa.io/en/stable/),
-nor your system Python(s).  
+nor your system Python(s).
 
 ## quickstart
 
@@ -48,7 +52,7 @@ or
 3. Open a terminal and `cd` to that folder.
 4. Enter `docker-compose run clock` to run an example service.
 
-Docker will download everything it needs to build a `suneku:latest` image.  
+Docker will download everything it needs to build a `suneku:latest` image.
 Subsequent runs re-use this image and are much faster.
 
 See the
@@ -76,32 +80,32 @@ repository for a short list of common Docker commands.
 
 The
 [suneku](suneku)
-folder is a Python package.  
+folder is a Python package.
 To comply with
 [PEP 423](https://www.python.org/dev/peps/pep-0423/#use-a-single-name),
-it has the same name as this repository.  
+it has the same name as this repository.
 The `suneku:latest` image includes it as an
 [editable pip install](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs).
 
 See the
 [examples](examples)
-folder for notebooks demonstrating the package.  
+folder for notebooks demonstrating the package.
 Notebooks can be
 [viewed in GitHub](https://help.github.com/articles/working-with-jupyter-notebook-files-on-github/)
 without running Jupyter.
 
 ## jupyter server
 
-1. Enter `docker-compose up jupyter` to ensure the server is running.  
-2. Open a browser and enter `127.0.0.1:8888` in the address bar.  
+1. Enter `docker-compose up jupyter` to ensure the server is running.
+2. Open a browser and enter `127.0.0.1:8888` in the address bar.
 3. If Jupyter demands a token, then copypaste it from the terminal.
 
-The Jupyter server ignores requests from all other addresses.  
+The Jupyter server ignores requests from all other addresses.
 The address can be modified in
 [docker-compose.yaml](docker-compose.yaml).
 
 *Suneku* stores its IPython and Jupyter settings in the
-[config](config) folder.  
+[config](config) folder.
 To use your own settings,
 [symlink](https://en.wikipedia.org/wiki/Symbolic_link)
 to your `.ipython` and/or `.jupyter` folders:
@@ -113,24 +117,24 @@ ln -s config/.jupyter /path/to/your/.jupyter
 
 ## private folders
 
-The [config](config) folder is for configuration files.  
-The [data](data) folder is for datasets. 
+The [config](config) folder is for configuration files.
+The [data](data) folder is for datasets.
 
 Files here are not
 [copied into images](.dockerignore)
 nor
-[uploaded to GitHub](.gitignore).  
+[uploaded to GitHub](.gitignore).
 Containers can access these folders only by
 [mounting](https://docs.docker.com/storage/bind-mounts/)
-them or their parents.  
+them or their parents.
 The only exceptions are
 [config/README.md](config/README.md)
 and these example datasets:
 
 - [data/NewYorkEnergy.csv](data/NewYorkEnergy.csv)
 from
-[data.ny.gov](https://data.ny.gov/Energy-Environment/Electric-Generation-By-Fuel-Type-GWh-Beginning-196/h4gs-8qnu)  
+[data.ny.gov](https://data.ny.gov/Energy-Environment/Electric-Generation-By-Fuel-Type-GWh-Beginning-196/h4gs-8qnu)
 GWh of electricity generated in New York since 1980.
 - [ZonalTempAnomaly.csv](data/ZonalTempAnomaly.csv)
-from [data.giss.nasa.gov](https://data.giss.nasa.gov/gistemp/)  
+from [data.giss.nasa.gov](https://data.giss.nasa.gov/gistemp/)
 Global surface temperature anomalies since 1880.
